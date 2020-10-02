@@ -22,7 +22,7 @@ public class Main2Activity extends AppCompatActivity {
     ShopCart shopItems = new ShopCart();
 
 
-    // print out the shopped and not shopped items that were passed as strings trough intent
+    // Print out the shopped and not shopped items that were passed as strings trough intent
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    // go back the main activity once the continue shopping button is clicked
+    // Go back the main activity once the continue shopping button is clicked
     public void continueShoppingClicked(View view) {
 
         if (view.getId() == R.id.continue_Shopping_Button) {
@@ -64,7 +64,7 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
-    // exit the app the exit button is clicked
+    // Exit the app once the exit button is clicked
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void exitClicked(View view) {
         if (view.getId() == R.id.exit_Button) {
