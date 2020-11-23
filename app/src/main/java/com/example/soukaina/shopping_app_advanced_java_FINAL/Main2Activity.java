@@ -11,6 +11,7 @@ import com.example.soukaina.shopping_app_advanced_java_prj2.R;
 
 // author Soukaina salihi
 
+// Second User interface with a summary of the shopping transaction
 public class Main2Activity extends AppCompatActivity {
 
     // create  references
