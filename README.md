@@ -12,7 +12,7 @@ character, alphabets instead of numbers or vice versa, and if any the text field
 left empty). Also, if the user enters duplicate item the program will update the item 
 data with the recent inputs. For priority numbers, it can be duplicated like (1, 2, 2, 3). 
 The highest priority would be the lowest number).  Once the user adds all the items that 
-he wants to purchase, the user will be asked to providea budget and a username. There is
+he wants to purchase, the user will be asked to provide a budget and a username. There is
 input validation for the budget, it can only be an integer or double he should click on 
 the checkout button, there should be at least one on item added to the list otherwise an
 alert box. The app will automatically calculate the total starting from the highest priority
