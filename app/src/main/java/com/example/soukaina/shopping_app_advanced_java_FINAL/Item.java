@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
  *
  * @author Soukaina
  */
+
+// Class
 public class Item extends Product  {
 
     private int priority;
