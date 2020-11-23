@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+// MainActivity contains the main user interface that gets displayed once the user opens the application 
 public class MainActivity extends AppCompatActivity {
 
     // Declare references
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // initialize the references by linking each one with its proper ID specified in the .xml file
+        // Initialize the references by linking each one with its proper ID specified in the .xml file
         priceOutput = (TextView) findViewById(R.id.priceLabel);
         quantityInput = (EditText) findViewById(R.id.quantityInqut_id);
         priorityInput = (EditText) findViewById(R.id.priorityInput_id);
@@ -95,19 +95,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // hide the soft keyboard when app starts
+        // Hide the soft keyboard when app starts
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
-        // make itemsListOutput text area scrollable
+        // Make itemsListOutput text area scrollable
         itemsListOutput.setMovementMethod(new ScrollingMovementMethod());
         itemsListOutput.setText("");
-        // instantiate my database
+        // Instantiate my database
         dbHandler = new MyDatabaseHandler(this, null, null, 1);
-        // print not shopped items saved in the database
+        // Print not shopped items saved in the database
         printDatabase();
     }
 
@@ -144,12 +144,12 @@ public class MainActivity extends AppCompatActivity {
     // check for wrong inputs or if any of the text fields is empty when clicking add item button
     public boolean validateInputs() {
 
-        // check if the quantity text field is empty then display a flag indicating an error message
+        // Check if the quantity text field is empty then display a flag indicating an error message
         if (quantityInput.getText().toString().matches("")) {
             quantityInput.setError("You didn't enter a quantity value!");
             return false;
         }
-        // check if the priority text field is empty then display a flag indicating an error message
+        // Check if the priority text field is empty then display a flag indicating an error message
         if (priorityInput.getText().toString().matches("")) {
             priorityInput.setError("You didn't enter a priority value!");
 
@@ -173,10 +173,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // check for wrong inputs or if the text field is empty for budget when checking out
+    // Check for wrong inputs or if the text field is empty for budget when checking out
     public boolean validateInputsBudget() {
 
-        // check if the budget text field is empty then display a flag indicating an error message
+        // Check if the budget text field is empty then display a flag indicating an error message
         if (budgetInput.getText().toString().matches("")) {
             Toast.makeText(this, "You didn't enter a budget value!", Toast.LENGTH_LONG).show();
 
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (validateInputs()) {
 
-            // delete the reminder and display the new shopping list instead
+            // Delete the reminder and display the new shopping list instead
             dbHandler.deleteAll();
             // update the label text
             itemsListLabel.setText("Added Items to your cart :");
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             // Get user inputs for item name
             itemObj.setName(selectedItemName.getText().toString());
 
-            // check if the item have been already entered
+            // Check if the item have been already entered
             // and handle the issue with alert box choices
             if (Obj.checkDuplicateItems(itemObj, itemsArray)) {
 
@@ -253,35 +253,35 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void addObject(Item obj) {
-        // hide the soft keyboard when clicking on addItem button
+        // Hide the soft keyboard when clicking on addItem button
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
-        // add the object name to the array
+        // Add the object name to the array
         itemsArray.add(obj);
-        // get the item's quantity from the user and add it to the array
+        // Get the item's quantity from the user and add it to the array
         shopItems.addQuantity(itemsArray.indexOf(obj), itemsArray, quantityInput.getText().toString());
-        // get the item's priority from the user and add it to the array
+        // Get the item's priority from the user and add it to the array
         shopItems.addPriority(itemsArray.indexOf(obj), itemsArray, priorityInput.getText().toString());
-        // sort the array of items based on priority
+        // Sort the array of items based on priority
         itemsArray = Item.sortListByPriority(itemsArray);
-        /* print the added items sorted */
+        /* Print the added items sorted */
         itemsListOutput.setText(shopItems.printAddedItems(itemsArray));
 
     }
 
     //Print the database
     public void printDatabase() {
-        // print reminder of not shopped items from last transaction
+        // Print reminder of not shopped items from last transaction
         itemsListLabel.setText("Not shopped items from last transaction:");
         String dbString = dbHandler.databaseToString();
         itemsListOutput.append(dbString);
     }
 
-    // go the second activity when checkout Button is clicked
+    // Go the second activity when checkout Button is clicked
     public void checkoutButtonClicked1(View v1) throws Exception {
         double totalPrice, currentBalance;
         String purchasedItems, notPurchasedItems;
@@ -290,20 +290,20 @@ public class MainActivity extends AppCompatActivity {
             if (validateInputsBudget()) {
                 double budget = Double.parseDouble(budgetInput.getText().toString());
 
-                // calculate the total price
+                // Calculate the total price
                 totalPrice = shopItems.perchaseItems(itemsArray, budget);
                 currentBalance = (budget - totalPrice);
-                // save shopped items sorted into a string
+                // Save shopped items sorted into a string
                 purchasedItems = shopItems.printShoppedItems(itemsArray);
                 // Save not shopped items sorted
                 notPurchasedItems = shopItems.printNotShoppedItems(dbHandler, itemsArray);
 
 
-                // pass information from this activity to the next activity
-                // create an intent to go the the second activity
+                // Pass information from this activity to the next activity
+                // Create an intent to go the the second activity
                 Intent i = new Intent(MainActivity.this, Main2Activity.class);
 
-                // send the outputs as a strings trough intent
+                // Send the outputs as a strings trough intent
                 i.putExtra("purchased", purchasedItems);
                 i.putExtra("notPurchased", notPurchasedItems);
                 i.putExtra("total", "$ " + totalPrice);
