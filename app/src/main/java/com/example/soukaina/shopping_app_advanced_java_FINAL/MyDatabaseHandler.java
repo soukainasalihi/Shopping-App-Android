@@ -1,5 +1,6 @@
-package com.example.soukaina.shopping_app_advanced_java_FINAL;
 // SOUKAINA SALIHI
+
+package com.example.soukaina.shopping_app_advanced_java_FINAL;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,15 +18,15 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_QUANTITY = "quantity";
     public static final String COLUMN_PRIORITY = "priority";
 
-    // create a constructor (We need to pass database information along to superclass)
+    // Create a constructor (We need to pass database information along to superclass)
     public MyDatabaseHandler(Context context, String name,
                              SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
-    // create the table columns that will home each item information
+    // Create the table columns that will home each item information
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // string query
+        // String query
         String CREATE_PRODUCTS_TABLE = "CREATE TABLE " +
                 TABLE_PRODUCTS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
@@ -63,19 +64,19 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    // get all saved items from database into a string
+    // Get all saved items from database into a string
     // ( this will be used by the function called printDatabase in the Main activity)
     public String databaseToString() {
         //  dbString is data holder
         String dbString = "";
         dbString += String.format("%8s%22s%18s%18s\n", "Name", "Price", "Quantity", "Priority");
 
-        //regular query
+        //Regular query
         String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
-        // get items data going trough each column
+        // Get items data by going trough each column
         if (cursor.moveToFirst()) {
             do {
                 dbString += String.format("%10s%22s%20s%20s", cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCTNAME)),
