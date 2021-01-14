@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.soukaina.shopping_app_advanced_java_prj2.R;
 
-// author Soukaina salihi
+// Author Soukaina salihi
 
 // Second User interface with a summary of the shopping transaction
 public class Main2Activity extends AppCompatActivity {
@@ -41,12 +41,12 @@ public class Main2Activity extends AppCompatActivity {
         budget.setKeyListener(null);
         currentBalance.setKeyListener(null);
 
-        // print out the shopped and not shopped items that were passed as strings trough intent
+        // Print out the shopped and not shopped items that were passed as strings trough intent
         Intent intent = getIntent();
         purchasedItems.setText(intent.getStringExtra("purchased"));
         notPurchasedItems.setText(intent.getStringExtra("notPurchased"));
 
-        // print the total price to UI print the budget to the UI and current balance
+        // Print the total price to UI print the budget to the UI and current balance
         totalPrice.setText(intent.getStringExtra("total"));
         budget.setText(intent.getStringExtra("budget"));
         currentBalance.setText(intent.getStringExtra("balance"));
