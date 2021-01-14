@@ -19,17 +19,17 @@ public class Item extends Product  {
     private int priority;
     private int quantity;
 
-    // default constuctor
+    // Default constuctor
     Item() {
         super();
     }
 
-    // constructor
+    // Constructor
     Item(String itmName, double itmPrice) {
         super(itmName , itmPrice);
 
     }
-    // constructor
+    // Constructor
     Item(String itmName, double itmPrice, int itmQuantity, int itmPriority) {
         super(itmName, itmPrice);
         quantity=itmQuantity;
@@ -38,7 +38,7 @@ public class Item extends Product  {
     }
 
 
-    // getter
+    // Getter
     public int getPriority() {
         return priority;
     }
@@ -59,13 +59,13 @@ public class Item extends Product  {
     }
 
 
-    // equals methods to compare objects by name
+    // Equals methods to compare objects by name
     public boolean equals(Item obj) {
         return (super.getName().equalsIgnoreCase(obj.getName()));
     }
 
 
-    //  sort the list by priority
+    //  Sort the list by priority
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Item>  sortListByPriority(List<Item> sortArray) {
 
