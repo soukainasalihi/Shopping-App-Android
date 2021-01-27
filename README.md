@@ -1,7 +1,6 @@
 # Shopping-App-Android
 Shopping cart application using android
 
-Test Case:
 
 When the Shopping application starts, the user will see a list of available items
 displayed in a dropdown menu. The user should pick an item name from the drop-down 
